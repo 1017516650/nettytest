@@ -1,0 +1,12 @@
+//package org.example.Netty.Game.Server.proto.out.bind;
+
+//option java_package = "org.example.Netty.Game.Server.proto.out";
+option java_outer_classname = "BindProto";
+
+message C2GSBindPlayer{
+  optional string account = 1;
+}
+
+message GS2CBindPlayer{
+  optional uint32 state = 1;
+}

@@ -1,0 +1,18 @@
+{
+  "client": [
+    {"C2GSBindPlayer":"1000001"},
+
+    {"C2GSAddItem": "1001001"},
+    {"C2GSDelItem": "1001002"},
+
+    {"C2GSOpenShop": "1002001"}
+  ],
+  "server": [
+    {"GS2CBindPlayer":"2000001"},
+
+    {"GS2CAddItem": "2001001"},
+    {"GS2CDelItem": "2001002"},
+
+    {"GS2COpenShop": "2002001"}
+  ]
+}
