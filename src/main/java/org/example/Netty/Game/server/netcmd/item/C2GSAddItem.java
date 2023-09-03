@@ -1,6 +1,8 @@
 package org.example.Netty.Game.server.netcmd.item;
 
+import org.example.Netty.Game.common.proto.out.item.ItemProto;
 import org.example.Netty.Game.common.protocol.NetHandler;
+import org.example.Netty.Game.server.GPlayer;
 
 /**
  * ClassName: C2GSAddItem
@@ -12,7 +14,14 @@ import org.example.Netty.Game.common.protocol.NetHandler;
  */
 public class C2GSAddItem extends NetHandler {
     @Override
-    public void request() {
+    public void request() throws Exception{
 
+        ItemProto.C2GSAddItem data = ItemProto.C2GSAddItem.parseFrom(packet.getBytes());
+        System.out.println("---------------C2GSAddItem--------------" + data.getItemsid() + " " + data.getAmount());
+
+        GPlayer player = packet.getPlayer();
+        ItemProto.GS2CAddItem.Builder builder = ItemProto.GS2CAddItem.newBuilder();
+        builder.setMsg("success");
+        player.send("GS2CAddItem", builder.build());
     }
 }

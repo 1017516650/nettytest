@@ -1,0 +1,18 @@
+option java_outer_classname = "ItemProto";
+
+message C2GSAddItem{
+  optional string itemsid = 1;
+  optional uint32 amount = 2;
+}
+
+message GS2CAddItem{
+  optional string msg = 1;
+}
+
+message C2GSDelItem{
+  optional string itemsid = 1;
+}
+
+message GS2CDelItem{
+  optional string msg = 1;
+}

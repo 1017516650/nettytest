@@ -1,0 +1,14 @@
+option java_outer_classname = "ShopProto";
+
+message C2GSOpenShop{
+  optional uint32 shopid = 1;
+}
+
+message Shop{
+  optional uint32 shopid = 1;
+  optional string data = 2;
+}
+
+message GS2COpenShop{
+  optional Shop shopdata = 1;
+}

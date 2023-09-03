@@ -1,6 +1,5 @@
 package org.example.Netty.Game.server.netcmd.bind;
 
-import com.google.protobuf.InvalidProtocolBufferException;
 import org.example.Netty.Game.common.proto.out.bind.BindProto;
 import org.example.Netty.Game.server.GPlayer;
 import org.example.Netty.Game.common.protocol.NetHandler;
