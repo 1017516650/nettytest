@@ -62,8 +62,15 @@ public class GClientBootstrap {
         if (channel == null || msg == null || !channel.isWritable()) {
             return;
         }
-        ByteBuf byteBuf = ProtoManager.wrapBuffer(cmd, msg);
-        channel.writeAndFlush(byteBuf);
+        Packet packet = pack(cmd, msg);
+        channel.writeAndFlush(packet);
+    }
+
+    public Packet pack(int cmd, GeneratedMessage msg){
+        byte[] data = msg.toByteArray();
+        int length = data.length + 4;
+        Packet packet = new Packet((byte) 0x80, length, cmd, data);
+        return packet;
     }
 
     public void setChannel(Channel ch){

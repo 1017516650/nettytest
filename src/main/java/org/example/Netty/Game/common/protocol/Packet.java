@@ -31,6 +31,9 @@ public class Packet {
         this(head, (short) 0, cmd, bytes, null);
     }
 
+    public Packet(byte head, int length, int cmd, byte[] bytes) {
+        this(head, (short) length, cmd, bytes, null);
+    }
 
     public Packet(byte head, short length, int cmd, byte[] bytes, Channel channel) {
         this.head = head;

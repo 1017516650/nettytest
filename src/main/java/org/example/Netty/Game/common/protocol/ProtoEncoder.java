@@ -18,6 +18,7 @@ public class ProtoEncoder extends MessageToByteEncoder<Packet> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Packet packet, ByteBuf buf) throws Exception {
+
         if (packet.getBytes().length > limit){
             System.out.println("warning packet too big");
         }
