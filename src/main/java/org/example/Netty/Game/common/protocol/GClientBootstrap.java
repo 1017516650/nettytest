@@ -11,6 +11,7 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.example.Netty.Game.client.GClient;
 
 import java.net.InetSocketAddress;
 
@@ -35,7 +36,7 @@ public class GClientBootstrap {
         return instance;
     }
 
-    public GClientBootstrap() {
+    public void init(){
         NioEventLoopGroup group = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(group)
@@ -50,8 +51,11 @@ public class GClientBootstrap {
                     }
                 });
 
-        bootstrap.connect(new InetSocketAddress("127.0.0.1", 36699));
-
+        try {
+            bootstrap.connect(new InetSocketAddress("127.0.0.1", 36699)).sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void send(int cmd, GeneratedMessage msg) {
@@ -64,6 +68,7 @@ public class GClientBootstrap {
 
     public void setChannel(Channel ch){
         channel = ch;
+        GClient.send();
     }
 
     public Channel getChannel(){

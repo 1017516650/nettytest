@@ -16,8 +16,10 @@ import org.example.Netty.Game.common.proto.out.bind.BindProto;
 public class ClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        Packet packet = (Packet) msg;
-        GClient.Read(packet);
+        if (msg instanceof  Packet){
+            Packet packet = (Packet) msg;
+            GClient.Read(packet);
+        }
     }
 
     @Override

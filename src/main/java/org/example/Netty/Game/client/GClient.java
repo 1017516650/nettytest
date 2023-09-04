@@ -17,6 +17,10 @@ import org.example.Netty.Game.common.protocol.Packet;
  */
 public class GClient {
     public static void main(String[] args) {
+        GClientBootstrap.getInstance().init();
+    }
+
+    public static void send(){
         bind();
         add();
         del();
@@ -26,7 +30,7 @@ public class GClient {
     public static void bind(){
         GClientBootstrap instance = GClientBootstrap.getInstance();
         BindProto.C2GSBindPlayer.Builder builder = BindProto.C2GSBindPlayer.newBuilder();
-        builder.setAccount("222222");
+        builder.setAccount("333333");
         instance.send(1000001, builder.build());
     }
 
@@ -69,7 +73,8 @@ public class GClient {
                     break;
                 case 2002001:
                     ShopProto.GS2COpenShop shop = ShopProto.GS2COpenShop.parseFrom(packet.getBytes());
-                    System.out.println("----------------GS2COpenShop------------------" + shop.getShopdata());
+                    System.out.println("----------------GS2COpenShop------------------"
+                            + shop.getShopdata().getShopid() + shop.getShopdata().getData());
                     break;
             }
         } catch (Exception e) {
