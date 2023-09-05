@@ -22,11 +22,6 @@ public class GPlayer {
         GGame.getInstance().AddOnlinesPlayer(this);
     }
 
-//    public void send(String route, GeneratedMessage msg){
-//        int cmd = GGame.getInstance().getGS2CCmdMap().get(route);
-//        channel.writeAndFlush(ProtoManager.wrapBuffer(cmd, msg));
-//    }
-
     public void send(String route, GeneratedMessage msg){
         int cmd = GGame.getInstance().getGS2CCmdMap().get(route);
         Packet packet = pack(cmd, msg);

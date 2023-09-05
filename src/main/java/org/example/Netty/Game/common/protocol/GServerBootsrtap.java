@@ -1,12 +1,11 @@
 package org.example.Netty.Game.common.protocol;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.ChannelPipeline;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.concurrent.DefaultThreadFactory;
 
 import java.net.InetSocketAddress;
 
@@ -20,8 +19,8 @@ import java.net.InetSocketAddress;
  */
 public class GServerBootsrtap {
     public GServerBootsrtap() {
-        NioEventLoopGroup bossGroup = new NioEventLoopGroup(2);
-        NioEventLoopGroup workerGroup = new NioEventLoopGroup(4);
+        NioEventLoopGroup bossGroup = new NioEventLoopGroup(new DefaultThreadFactory("bossGroup"));
+        NioEventLoopGroup workerGroup = new NioEventLoopGroup(new DefaultThreadFactory("workerGroup"));
         ServerBootstrap serverBootstrap = new ServerBootstrap();
         serverBootstrap.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
@@ -32,7 +31,7 @@ public class GServerBootsrtap {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast("decoder", new ProtoDecoder());
-                        pipeline.addLast("serverhandler", new ServerHandler());
+                        pipeline.addLast(new DefaultEventLoopGroup(4), new ServerHandler());
                         pipeline.addLast("encoder", new ProtoEncoder());
                     }
                 });
