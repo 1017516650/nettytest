@@ -21,10 +21,6 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-//        System.out.println("------------------channelRead 1------------" + formatter.format(new Date(System.currentTimeMillis())));
-//        TimeUnit.SECONDS.sleep(1);
-//        System.out.println("------------------channelRead 2------------" + formatter.format(new Date(System.currentTimeMillis())));
         Packet packet = (Packet) msg;
         GGame.getInstance().AddPacket(packet);
     }

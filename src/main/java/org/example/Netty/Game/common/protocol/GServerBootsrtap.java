@@ -31,7 +31,7 @@ public class GServerBootsrtap {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast("decoder", new ProtoDecoder());
-                        pipeline.addLast(new DefaultEventLoopGroup(4), new ServerHandler());
+                        pipeline.addLast("serverhandler", new ServerHandler());
                         pipeline.addLast("encoder", new ProtoEncoder());
                     }
                 });

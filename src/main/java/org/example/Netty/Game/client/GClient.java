@@ -25,9 +25,9 @@ public class GClient {
         add();
         del();
         openShop();
-//        for (int i = 0; i < 2000; i++) {
-//            openShop();
-//        }
+        for (int i = 0; i < 2000; i++) {
+            openShop();
+        }
     }
 
     public static void bind(){
